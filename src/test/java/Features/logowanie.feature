@@ -11,7 +11,7 @@ Feature: Logowanie do systemu
     And Uzytkownik kilka przycisk Login
     Then Uzytkownik zostaje zalogowany
 
-
+@later
   Scenario: Niepoprawne logowanie do aplikacji aby moc korzystac z zaawansowanych funkcji systemu
     Given Uzytkownik wpisuje adres "https://the-internet.herokuapp.com/login"
     #When Uzytkownik wpisuje poprawny username
@@ -21,10 +21,24 @@ Feature: Logowanie do systemu
     And Uzytkownik kilka przycisk Login
     Then Uzytkownik zostaje zalogowany
 
-      @now
-      Scenario: Niepoprawne logowanie do aplikacji (Druga wersja)
-        Given Uzytkownik wpisuje adres "https://the-internet.herokuapp.com/login"
-        When Uzytkownik wpisuje "tomsmith" username
-        And Uzytkownik wpisuje "niePasujaceHaslo" w pole password
-        And Uzytkownik kilka przycisk Login
-        Then Uzytkownik nie zostaje zalogowany
+@later
+  Scenario: Niepoprawne logowanie do aplikacji (Druga wersja)
+    Given Uzytkownik wpisuje adres "https://the-internet.herokuapp.com/login"
+    When Uzytkownik wpisuje "tomsmith" username
+    And Uzytkownik wpisuje "niePasujaceHaslo" w pole password
+    And Uzytkownik kilka przycisk Login
+    Then Uzytkownik nie zostaje zalogowany
+
+  @now
+  Scenario Outline: Niepoprawne logowanie
+    Given Uzytkownik wpisuje adres "https://the-internet.herokuapp.com/login"
+    When Uzytkownik wpisuje <nazwaUzytkownika> username
+    And Uzytkownik wpisuje <haslo> w pole password
+    And Uzytkownik kilka przycisk Login
+    Then Uzytkownik nie zostaje zalogowany
+
+    Examples:
+
+      | nazwaUzytkownika | haslo  |
+      | tomsmith         | blabla |
+      | tomsmith         | aaaa   |

@@ -3,6 +3,7 @@ package Steps;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -92,6 +93,14 @@ public class Logowanie {
         System.out.println("uzytkownik zostal poprawnie zalogowany");
         Assert.assertEquals("https://the-internet.herokuapp.com/secure",driver.getCurrentUrl());
         //driver.close();
+    }
+
+    @When("^Uzytkownik wpisuje (.+) username$")
+    public void uzytkownik_wpisuje_username(String nazwauzytkownika) {
+    }
+
+    @And("^Uzytkownik wpisuje (.+) w pole password$")
+    public void uzytkownik_wpisuje_w_pole_password2(String haslo) {
     }
 
     @AfterAll
